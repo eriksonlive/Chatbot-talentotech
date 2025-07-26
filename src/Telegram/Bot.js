@@ -1,8 +1,10 @@
 import TelegramBot from 'node-telegram-bot-api';
 import { askGemini } from '../IA/gemini.js';
 import { registrarConversacion } from '../Analytics/analytics.js';
+import { scrapIngeleanWebsite, searchInScrapedData } from '../utils/WebScraper.js';
 
 const sesiones = new Map();
+let websiteData = null; // Para almacenar en caché los datos scrapeados
 
 export const IniciarChatbot = (telegramToken) => {
   console.log('🤖 Iniciando bot de Telegram...');
@@ -15,6 +17,16 @@ export const IniciarChatbot = (telegramToken) => {
   const bot = new TelegramBot(telegramToken, { polling: true });
   
   console.log('✅ Bot de Telegram iniciado correctamente');
+
+  // Iniciar scraping de la web al iniciar el bot
+  (async () => {
+    try {
+      websiteData = await scrapIngeleanWebsite();
+      console.log('🌐 Datos del sitio web cargados correctamente');
+    } catch (error) {
+      console.error('❌ Error al cargar datos del sitio web:', error);
+    }
+  })();
 
   // Manejo de errores del bot
   bot.on('polling_error', (error) => {
@@ -50,7 +62,13 @@ export const IniciarChatbot = (telegramToken) => {
 • Mantenimiento técnico
 • Inteligencia artificial
 
-💬 ¿En qué puedo ayudarte hoy?`;
+💬 ¿En qué puedo ayudarte hoy?
+
+También puedes consultarme información actualizada sobre nuestra empresa utilizando estos comandos:
+• /servicios - Ver nuestros servicios
+• /proyectos - Conocer nuestro portafolio de proyectos
+• /contacto - Obtener información de contacto
+• /empresa - Conocer más sobre INGE LEAN`;
       
       try {
         await bot.sendMessage(chatId, welcomeMessage);
@@ -58,6 +76,74 @@ export const IniciarChatbot = (telegramToken) => {
         return;
       } catch (error) {
         console.error('❌ Error enviando mensaje de bienvenida:', error);
+      }
+    }
+    
+    // Comandos para consultar información del sitio web
+    if (userMessage === '/servicios' || userMessage === '/contacto' || userMessage === '/empresa' || userMessage === '/proyectos' || 
+        userMessage.toLowerCase().includes('web') || userMessage.toLowerCase().includes('página') || 
+        userMessage.toLowerCase().includes('sitio') || userMessage.toLowerCase().includes('ingelean.com') ||
+        userMessage.toLowerCase().includes('proyectos')) {
+      
+      try {
+        console.log('🌐 Procesando consulta sobre el sitio web...');
+        let responseMessage = '';
+        
+        // Si no tenemos datos scrapeados o queremos actualizarlos
+        if (!websiteData || userMessage.toLowerCase().includes('actualiza')) {
+          await bot.sendMessage(chatId, '🔄 Obteniendo información actualizada del sitio web...');
+          websiteData = await scrapIngeleanWebsite();
+          responseMessage = '✅ Información actualizada correctamente.\n\n';
+        }
+        
+        if (userMessage === '/servicios') {
+          responseMessage += searchInScrapedData(websiteData, 'servicios');
+        } else if (userMessage === '/contacto') {
+          responseMessage += searchInScrapedData(websiteData, 'contacto');
+        } else if (userMessage === '/empresa') {
+          responseMessage += searchInScrapedData(websiteData, 'empresa');
+        } else if (userMessage === '/proyectos' || userMessage.toLowerCase().includes('proyecto')) {
+          responseMessage += searchInScrapedData(websiteData, 'proyectos');
+        } else {
+          // Consulta personalizada sobre el sitio web
+          responseMessage += searchInScrapedData(websiteData, userMessage);
+        }
+        
+        // Dividir mensajes largos (límite de Telegram: 4096 caracteres)
+        if (responseMessage.length > 4000) {
+          console.log('⚠️ Respuesta demasiado larga, dividiendo en partes...');
+          
+          // Dividir en párrafos
+          const paragraphs = responseMessage.split('\n\n');
+          let currentMessage = '';
+          
+          for (const paragraph of paragraphs) {
+            // Si agregar este párrafo haría que el mensaje supere el límite
+            if (currentMessage.length + paragraph.length + 2 > 4000) {
+              // Enviar el mensaje actual
+              await bot.sendMessage(chatId, currentMessage);
+              currentMessage = paragraph + '\n\n';
+            } else {
+              // Agregar el párrafo al mensaje actual
+              currentMessage += paragraph + '\n\n';
+            }
+          }
+          
+          // Enviar el último mensaje si queda algo
+          if (currentMessage.trim()) {
+            await bot.sendMessage(chatId, currentMessage.trim());
+          }
+        } else {
+          await bot.sendMessage(chatId, responseMessage || 'No se encontró información específica sobre esa consulta en el sitio web.');
+        }
+        
+        // Registrar la conversación para analytics
+        registrarConversacion(chatId, userMessage, responseMessage);
+        
+        return;
+      } catch (error) {
+        console.error('❌ Error procesando consulta del sitio web:', error);
+        await bot.sendMessage(chatId, '⚠️ Lo siento, hubo un problema al obtener la información del sitio web. Voy a intentar responder con la información que tengo.');
       }
     }
 
@@ -190,7 +276,25 @@ export const IniciarChatbot = (telegramToken) => {
 
     try {
       console.log('🤔 Procesando mensaje con Gemini...');
-      const answer = await askGemini(promptConHistorial);
+      
+      // Si el mensaje contiene referencias a la web de ingelean, intentar actualizar los datos
+      if (userMessage.toLowerCase().includes('web') || 
+          userMessage.toLowerCase().includes('ingelean.com') || 
+          userMessage.toLowerCase().includes('página') ||
+          userMessage.toLowerCase().includes('actualiza')) {
+        
+        if (!websiteData) {
+          try {
+            console.log('🔄 Actualizando datos del sitio web para la consulta...');
+            websiteData = await scrapIngeleanWebsite();
+          } catch (webError) {
+            console.error('⚠️ No se pudieron obtener datos actualizados del sitio web:', webError);
+          }
+        }
+      }
+      
+      // Usar los datos del sitio web para enriquecer la respuesta de Gemini
+      const answer = await askGemini(promptConHistorial, websiteData);
       sesion.historial.push({ rol: 'bot', mensaje: answer });
 
       // Registrar la conversación para analytics
@@ -199,8 +303,37 @@ export const IniciarChatbot = (telegramToken) => {
       console.log('📤 Enviando respuesta al usuario...');
       console.log('💬 Respuesta generada:', answer.substring(0, 100) + '...');
       
-      await bot.sendMessage(chatId, answer);
-      console.log('✅ Respuesta enviada exitosamente al chat:', chatId);
+      // Dividir mensajes largos (límite de Telegram: 4096 caracteres)
+      if (answer.length > 4000) {
+        console.log('⚠️ Respuesta demasiado larga, dividiendo en partes...');
+        
+        // Dividir en párrafos primero
+        const paragraphs = answer.split('\n\n');
+        let currentMessage = '';
+        
+        for (const paragraph of paragraphs) {
+          // Si agregar este párrafo haría que el mensaje supere el límite
+          if (currentMessage.length + paragraph.length + 2 > 4000) {
+            // Enviar el mensaje actual
+            await bot.sendMessage(chatId, currentMessage);
+            currentMessage = paragraph + '\n\n';
+          } else {
+            // Agregar el párrafo al mensaje actual
+            currentMessage += paragraph + '\n\n';
+          }
+        }
+        
+        // Enviar el último mensaje si queda algo
+        if (currentMessage.trim()) {
+          await bot.sendMessage(chatId, currentMessage.trim());
+        }
+        
+        console.log('✅ Respuesta dividida enviada exitosamente al chat:', chatId);
+      } else {
+        // La respuesta cabe en un solo mensaje
+        await bot.sendMessage(chatId, answer);
+        console.log('✅ Respuesta enviada exitosamente al chat:', chatId);
+      }
 
       //   sesiones.delete(chatId);
     } catch (error) {

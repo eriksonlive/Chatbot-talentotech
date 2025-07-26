@@ -519,6 +519,32 @@
       "responseTime": 1485.6134502516602,
       "resolved": true,
       "escalated": true
+    },
+    {
+      "id": "7534400608_1753563492902",
+      "chatId": 7534400608,
+      "timestamp": "2025-07-26T20:58:12.902Z",
+      "userMessage": "Muestrame los proyectos de la empresa en la pagina web",
+      "botResponse": "¡Claro! Con gusto te muestro algunos de nuestros proyectos destacados directamente desde nuestra página web. 💻⚙️\n\nPuedes verlos en detalle aquí: [https://ingelean.com/#Proyectos](https://ingelean.com/#Proyectos)\n\nAllí encontrarás proyectos como:\n\n*   **Domótica:** Tecnologías para el control inteligente de espacios. 🏠\n*   **Máquina dosificadora de maní:** Soluciones para la industria alimentaria. 🥜\n*   **Tarjetas NFC:** Herramientas para networking y eventos empresariales. 💳\n*   **DMP Lab Iot & Industry:** Equipos educativos para la industria 4.0. 🧪\n*   **Automatización de parqueaderos:** Optimizando el proceso de parqueo con tecnología. 🅿️\n*   **Extrusora de Jabón:** Fabricación de barras de jabón a gran escala. 🧼\n\n¡Y muchos más! Si alguno te llama la atención o te gustaría saber más sobre cómo lo implementamos, no dudes en preguntar. 😊\n",
+      "sentiment": "NEUTRAL",
+      "emotion": "neutral",
+      "intent": "consulta_general",
+      "responseTime": 1233.2127979975858,
+      "resolved": true,
+      "escalated": false
+    },
+    {
+      "id": "7534400608_1753563702691",
+      "chatId": 7534400608,
+      "timestamp": "2025-07-26T21:01:42.691Z",
+      "userMessage": "Muestrame los proyectos de la empresa en la pagina web",
+      "botResponse": "💼 **Proyectos de INGE LEAN:**\n\nSegún la información de nuestra página web (https://ingelean.com/#Proyectos), estos son algunos de nuestros proyectos destacados:\n\n• **Domótica:** Tecnologías para el control inteligente de espacios.\n• **Máquina dosificadora de maní:** Soluciones para la industria alimentaria.\n• **Tarjetas NFC:** Herramientas para networking y eventos empresariales.\n• **DMP Lab IoT & Industry:** Equipos educativos para la industria 4.0.\n• **Automatización de parqueaderos:** Optimizando el proceso de parqueo con tecnología.\n• **Extrusora de Jabón:** Fabricación de barras de jabón a gran escala.\n\nTe invitamos a visitar nuestra página web para conocer más detalles sobre estos y otros proyectos.",
+      "sentiment": "NEUTRAL",
+      "emotion": "neutral",
+      "intent": "consulta_general",
+      "responseTime": 2132.6179764913977,
+      "resolved": true,
+      "escalated": false
     }
   ]
 }
