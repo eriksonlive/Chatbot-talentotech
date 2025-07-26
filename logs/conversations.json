@@ -129,6 +129,32 @@
       "responseTime": 1320,
       "resolved": true,
       "escalated": false
+    },
+    {
+      "id": "usuario_enojado_001_1753558917663",
+      "chatId": "usuario_enojado_001",
+      "timestamp": "2025-07-26T19:41:57.663Z",
+      "userMessage": "Estoy muy enojado con este servicio, es una basura total!",
+      "botResponse": "Lamento mucho escuchar que estás teniendo una mala experiencia con nuestro servicio. 😔 Entiendo tu frustración y me disculpo por cualquier inconveniente que esto te esté causando. \n\nEn INGE LEAN S.A.S. nos tomamos muy en serio los comentarios de nuestros clientes y queremos asegurarnos de que estés satisfecho. Para poder ayudarte de la mejor manera posible, ¿podrías por favor brindarme más detalles sobre lo que está sucediendo? \n\nEntender qué está fallando nos permitirá identificar el problema y trabajar en una solución rápida y efectiva. 🛠️\n\nAgradezco tu paciencia y colaboración. ¡Estamos aquí para ayudarte a resolver esto! 😊\n",
+      "sentiment": "NEUTRAL",
+      "emotion": "neutral",
+      "intent": "consulta_general",
+      "responseTime": 1371.9398549276116,
+      "resolved": true,
+      "escalated": false
+    },
+    {
+      "id": "usuario_interesado_002_1753558939262",
+      "chatId": "usuario_interesado_002",
+      "timestamp": "2025-07-26T19:42:19.262Z",
+      "userMessage": "Hola, necesito informaci�n sobre automatizaci�n industrial",
+      "botResponse": "¡Hola! 👋 Un gusto saludarte. 😊\n\nGracias por contactarnos a INGE LEAN S.A.S. ¡Claro que te puedo brindar información sobre automatización industrial! 🤖🏭\n\nEn INGE LEAN S.A.S., la automatización industrial es una de nuestras especialidades. Ayudamos a las empresas a optimizar sus procesos productivos mediante la implementación de soluciones que van desde la selección de la tecnología adecuada hasta la puesta en marcha y el mantenimiento de sistemas automatizados.\n\nPodemos ayudarte con:\n\n*   **Análisis y Diseño:** Evaluamos tus procesos actuales y diseñamos la mejor estrategia de automatización para tus necesidades específicas.\n*   **Implementación:** Integramos robots, sensores, PLCs (Controladores Lógicos Programables), y otros dispositivos para automatizar tareas repetitivas o peligrosas.\n*   **Optimización:** Mejoramos la eficiencia y la productividad de tus líneas de producción a través de la automatización.\n*   **Mantenimiento:** Ofrecemos servicios de mantenimiento preventivo y correctivo para asegurar el correcto funcionamiento de tus sistemas automatizados.\n*   **Integración con IA:** Incorporamos soluciones de inteligencia artificial para optimizar la toma de decisiones y mejorar la eficiencia de los procesos automatizados. 🧠\n\nPara entender mejor tus necesidades y cómo podemos ayudarte, ¿podrías contarnos un poco más sobre qué procesos te gustaría automatizar o qué desafíos estás enfrentando actualmente?\n\n¡Estamos aquí para ayudarte a llevar tu empresa al siguiente nivel con la automatización!🚀\n",
+      "sentiment": "NEUTRAL",
+      "emotion": "neutral",
+      "intent": "consulta_automatizacion",
+      "responseTime": 999.1835251271243,
+      "resolved": true,
+      "escalated": false
     }
   ]
 }
