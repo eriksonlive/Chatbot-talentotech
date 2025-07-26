@@ -187,7 +187,7 @@ El dashboard de analytics ofrece visualización en tiempo real de las métricas 
 ### Para Usuarios
 
 1. **Iniciar Conversación**:
-   - Buscar "@IngeleanBot" en Telegram
+   - Buscar "@ChatNiloProjectBot" en Telegram
    - Enviar comando `/start` para iniciar
 
 2. **Comandos Disponibles**:
@@ -271,7 +271,7 @@ El sistema incorpora múltiples capas de seguridad:
 
 1. **Clonar Repositorio**:
    ```bash
-   git clone https://github.com/username/Chatbot-talentotech.git
+   git clone https://github.com/eriksonlive/Chatbot-talentotech.git
    cd Chatbot-talentotech
    ```
 
