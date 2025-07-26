@@ -1,5 +1,6 @@
 import TelegramBot from 'node-telegram-bot-api';
 import { askGemini } from '../IA/gemini.js';
+import { registrarConversacion } from '../Analytics/analytics.js';
 
 const sesiones = new Map();
 
@@ -140,6 +141,9 @@ export const IniciarChatbot = (telegramToken) => {
     try {
       const answer = await askGemini(promptConHistorial);
       sesion.historial.push({ rol: 'bot', mensaje: answer });
+
+      // Registrar la conversación para analytics
+      registrarConversacion(chatId, userMessage, answer);
 
       bot.sendMessage(chatId, answer);
 
