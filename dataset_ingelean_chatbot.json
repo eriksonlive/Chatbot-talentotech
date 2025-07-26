@@ -1,0 +1,164 @@
+[
+  {
+    "intent": "servicios",
+    "phrases": [
+      "¿Qué servicios ofrecen?",
+      "Qué hace INGELEAN?",
+      "Qué hacen ustedes?",
+      "Servicios que dan",
+      "Qué tipo de servicios manejan",
+      "que hacen en ingelean",
+      "ustedes programan?",
+      "ustedes hacen software?",
+      "en que me pueden ayudar?",
+      "ofrecen soluciones tecnologicas?",
+      "qu hacen uds?",
+      "ke servicios prestan"
+    ],
+    "response": "Ofrecemos desarrollo de software a medida, automatización industrial, diseño e implementación de hardware, mantenimiento técnico especializado e inteligencia artificial aplicada a procesos empresariales."
+  },
+  {
+    "intent": "cobertura_geografica",
+    "phrases": [
+      "Atienden fuera del Eje Cafetero?",
+      "trabajan en otra ciudad?",
+      "ustedes van a bogota?",
+      "atienden empresas nacionales?",
+      "se puede contratar desde medellin?",
+      "estan solo en pereira?",
+      "atienden online?",
+      "cubren otras zonas?",
+      "hacen proyectos a distancia?",
+      "me pueden atender desde otra ciudad?"
+    ],
+    "response": "Sí, brindamos atención a nivel nacional y podemos coordinar proyectos a distancia o con visitas programadas."
+  },
+  {
+    "intent": "cotizacion",
+    "phrases": [
+      "cómo pido una cotización?",
+      "quiero cotizar un proyecto",
+      "me pueden dar precio?",
+      "necesito presupuesto",
+      "cuánto cuesta un desarrollo?",
+      "como cotizo con ustedes?",
+      "cotizacion por favor",
+      "precio de su servicio",
+      "me dan una propuesta?",
+      "cuanto cobran?"
+    ],
+    "response": "Escríbenos por este chat con tus datos de contacto y una breve descripción de tu necesidad. Un asesor te contactará en menos de 24 horas hábiles."
+  },
+  {
+    "intent": "ubicacion_atencion",
+    "phrases": [
+      "tienen oficina?",
+      "donde están ubicados?",
+      "hay atención presencial?",
+      "puedo ir a su empresa?",
+      "donde queda ingelean?",
+      "dirección de ustedes",
+      "sede física?",
+      "trabajan presencial?",
+      "puedo visitarlos?",
+      "estan en pereira?"
+    ],
+    "response": "Sí, puedes visitarnos en Pereira, Risaralda. Te recomendamos agendar cita previa escribiendo a contacto@ingelean.com o por este canal."
+  },
+  {
+    "intent": "mantenimiento",
+    "phrases": [
+      "dan mantenimiento?",
+      "tipo de soporte que ofrecen?",
+      "hacen mantenimiento preventivo?",
+      "revisan equipos?",
+      "soporte tecnico tienen?",
+      "mantenimiento correctivo?",
+      "arreglan sistemas?",
+      "auditoría tecnica hacen?",
+      "ayuda con fallas tecnicas?",
+      "servicio técnico disponible?"
+    ],
+    "response": "Realizamos mantenimiento preventivo y correctivo en sistemas industriales, equipos tecnológicos y software, además de auditorías técnicas."
+  },
+  {
+    "intent": "inteligencia_artificial",
+    "phrases": [
+      "usan IA?",
+      "aplican inteligencia artificial?",
+      "pueden implementar IA en mi negocio?",
+      "integran inteligencia artificial?",
+      "pueden analizar mis datos con IA?",
+      "hacen reconocimiento de patrones?",
+      "diseñan soluciones con IA?",
+      "tienen IA predictiva?",
+      "automatizan con IA?",
+      "mejoran procesos con inteligencia artificial?"
+    ],
+    "response": "Claro. Evaluamos tus procesos y diseñamos soluciones con IA como reconocimiento de patrones, automatización inteligente o análisis predictivo."
+  },
+  {
+    "intent": "automatizacion",
+    "phrases": [
+      "automatizan procesos?",
+      "mejoran la produccion?",
+      "pueden automatizar mi planta?",
+      "tienen soluciones de automatización?",
+      "optimizan tiempos?",
+      "hacen automatizacion industrial?",
+      "automatizan fabricas?",
+      "lineas de produccion automatizadas?",
+      "integran sensores o actuadores?",
+      "sistemas industriales inteligentes?"
+    ],
+    "response": "Sí. Nos especializamos en automatización industrial para mejorar eficiencia, reducir errores y optimizar tiempos de producción."
+  },
+  {
+    "intent": "tiempo_respuesta_soporte",
+    "phrases": [
+      "cuánto demoran en responder?",
+      "tiempo de soporte?",
+      "responden rápido?",
+      "cuánto se demoran en ayudar?",
+      "tienen soporte rápido?",
+      "en cuanto tiempo contestan?",
+      "soporte prioritario?",
+      "espera para asistencia?",
+      "demoran en contestar?",
+      "respuesta en cuanto tiempo?"
+    ],
+    "response": "Entre 4 y 8 horas hábiles, dependiendo de la complejidad. También ofrecemos planes con atención prioritaria."
+  },
+  {
+    "intent": "planes_suscripcion",
+    "phrases": [
+      "tienen planes mensuales?",
+      "puedo pagar mensual?",
+      "hay suscripción?",
+      "planes de servicio continuo?",
+      "pago recurrente?",
+      "suscripcion disponible?",
+      "plan de soporte mensual?",
+      "puedo contratar por mes?",
+      "tienen monitoreo continuo?",
+      "mantenimiento mensual?"
+    ],
+    "response": "Sí. Tenemos planes personalizados de soporte, mantenimiento y monitoreo continuo adaptados a tu empresa."
+  },
+  {
+    "intent": "diferencia_empresa",
+    "phrases": [
+      "por qué elegirlos?",
+      "que los hace diferentes?",
+      "ventaja frente a otras empresas?",
+      "por qué son mejores?",
+      "qué los destaca?",
+      "qué los diferencia?",
+      "que tienen de especial?",
+      "qué valoran sus clientes?",
+      "son recomendados?",
+      "diferencia con la competencia?"
+    ],
+    "response": "Nos destacamos por soluciones personalizadas, atención cercana, experiencia en ingeniería y uso de tecnología de vanguardia."
+  }
+]

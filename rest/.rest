@@ -1,15 +1,105 @@
 @api = http://localhost:3000
 
-@dummie  = https://dummyjson.com
+### 🎯 Prueba 1: Conversación con context### 📋 Ver todos los intents disponibles
+GET {{api}}/intents
 
+### 🏠 Health check
+GET {{api}}/
+
+### 🎨 Ver dashboard (abrir en navegador)
+GET {{api}}/dashboard
+
+### 📱 Webhook de WhatsApp con contexto
+POST {{api}}/webhook
+Content-Type: application/json
+
+{
+  "message": "tienen soporte técnico? Necesito ayuda rápido por favor",
+  "userId": "whatsapp_user_001"
+}je
 POST {{api}}/chat
 Content-Type: application/json
 
 {
-  "message": "dentro de tus productos hay consolas de videojuegos?"
+  "message": "¿Qué servicios ofrecen?",
+  "userId": "demo_user_001"
 }
 
-###
+### 🎯 Prueba 2: Conversación con contexto - Continuación
+POST {{api}}/chat
+Content-Type: application/json
 
-GET {{dummie}}/products
+{
+  "message": "¿Cuánto cuesta eso?",
+  "userId": "demo_user_001"
+}
+
+### 🎯 Prueba 3: Conversación con contexto - Más información
+POST {{api}}/chat
+Content-Type: application/json
+
+{
+  "message": "Me interesa, pero necesito más detalles sobre la automatización",
+  "userId": "demo_user_001"
+}
+
+### 😡 Prueba 4: Mensaje NEGATIVO (escalación)
+POST {{api}}/chat
+Content-Type: application/json
+
+{
+  "message": "Estoy muy frustrado, su sistema no funciona y necesito ayuda urgente!",
+  "userId": "demo_user_002"
+}
+
+### 😊 Prueba 5: Mensaje POSITIVO
+POST {{api}}/chat
+Content-Type: application/json
+
+{
+  "message": "Excelente servicio, estoy muy contento con su trabajo!",
+  "userId": "demo_user_003"
+}
+
+### 📊 Ver contexto de un usuario
+GET {{api}}/context/demo_user_001
+
+### � Estadísticas de contexto general
+GET {{api}}/context-stats
+
+### 📊 Análisis de sentimiento directo
+POST {{api}}/sentiment
+Content-Type: application/json
+
+{
+  "message": "Estoy un poco confundido con los precios, podrían ayudarme?"
+}
+
+### � Analytics - Overview general
+GET {{api}}/analytics/overview
+
+### 📈 Analytics - Distribución de sentimientos (7 días)
+GET {{api}}/analytics/sentiment-distribution?days=7
+
+### 📈 Analytics - Tendencias por hora
+GET {{api}}/analytics/hourly-trends
+
+### � Analytics - Casos de escalación
+GET {{api}}/analytics/escalations?limit=10
+
+### � Ver todos los intents disponibles
+GET {{api}}/intents
 Accept: application/json
+
+### 🏠 Health check
+GET {{api}}/
+Accept: application/json
+
+### 📱 Webhook de WhatsApp con sentimiento
+POST {{api}}/webhook
+Content-Type: application/json
+
+{
+  "message": "tienen soporte técnico? Necesito ayuda rápido por favor",
+  "userId": "whatsapp_user_001"
+}
