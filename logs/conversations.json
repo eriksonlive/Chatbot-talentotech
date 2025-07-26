@@ -155,6 +155,19 @@
       "responseTime": 999.1835251271243,
       "resolved": true,
       "escalated": false
+    },
+    {
+      "id": "usuario_interesado_002_1753559296845",
+      "chatId": "usuario_interesado_002",
+      "timestamp": "2025-07-26T19:48:16.845Z",
+      "userMessage": "Hola, necesito informaci�n sobre automatizaci�n industrial",
+      "botResponse": "¡Hola! 👋 Gracias por contactarnos. ¡Claro que sí! En INGE LEAN S.A.S. somos expertos en automatización industrial. ⚙️🤖\n\nPodemos ayudarte a optimizar tus procesos y aumentar la eficiencia de tu empresa. Para darte la mejor información, ¿podrías contarnos un poco más sobre qué tipo de automatización industrial te interesa? Por ejemplo:\n\n*   ¿Qué procesos te gustaría automatizar?\n*   ¿Qué tipo de industria pertenece tu empresa?\n*   ¿Tienes algún sistema o equipo específico en mente?\n\nCon esta información, podremos ofrecerte soluciones personalizadas y detalladas. ¡Estamos aquí para ayudarte a llevar tu empresa al siguiente nivel! 🚀\n",
+      "sentiment": "NEUTRAL",
+      "emotion": "neutral",
+      "intent": "consulta_automatizacion",
+      "responseTime": 1201.6936382486992,
+      "resolved": true,
+      "escalated": false
     }
   ]
 }

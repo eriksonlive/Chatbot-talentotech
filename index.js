@@ -35,7 +35,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 // Limitar la cantidad de peticiones por minuto para evitar abuso
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minuto
-  max: 10, // máximo 10 peticiones por minuto
+  max: 100, // máximo 100 peticiones por minuto
   message: 'Demasiadas solicitudes. Intenta más tarde.',
 });
 app.use(limiter);
