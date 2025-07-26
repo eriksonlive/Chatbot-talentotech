@@ -1,0 +1,15 @@
+@api = http://localhost:3000
+
+@dummie  = https://dummyjson.com
+
+POST {{api}}/chat
+Content-Type: application/json
+
+{
+  "message": "dentro de tus productos hay consolas de videojuegos?"
+}
+
+###
+
+GET {{dummie}}/products
+Accept: application/json
