@@ -1,0 +1,3 @@
+<FilesMatch "\.(env|config|ini|log|sh|bak)$">
+  Require all denied
+</FilesMatch>

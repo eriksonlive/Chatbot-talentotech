@@ -1,0 +1,58 @@
+{
+  "citas": [
+    {
+      "chatId": 1843987766,
+      "profesional": "ANDREA CAROLINA MOYANO LIZARAZO (CONSULTA)",
+      "fecha": "2025-06-26",
+      "hora": "12:30",
+      "paciente": "fernando",
+      "identificacion": "123456",
+      "creada": "2025-06-18T13:47:45.737Z"
+    },
+    {
+      "chatId": 1843987766,
+      "profesional": "ANDREA CAROLINA MOYANO LIZARAZO (CONSULTA)",
+      "fecha": "2025-06-26",
+      "hora": "07:00",
+      "paciente": "carlos",
+      "identificacion": "12345689",
+      "creada": "2025-06-18T13:49:10.700Z"
+    },
+    {
+      "chatId": 1843987766,
+      "profesional": "FREDY LONDARDY MORENO AGUILAR (CONSULTA)",
+      "fecha": "2025-06-24",
+      "hora": "07:30",
+      "paciente": "erick aya",
+      "identificacion": "12304595",
+      "creada": "2025-06-18T15:40:38.198Z"
+    },
+    {
+      "chatId": 1843987766,
+      "profesional": "DAYANA MARIA RODRIGUEZ AVILA (ASISTIDA 1)",
+      "fecha": "2025-06-24",
+      "hora": "12:00",
+      "paciente": "carlos martines",
+      "identificacion": "124567809",
+      "creada": "2025-06-18T16:46:07.137Z"
+    },
+    {
+      "chatId": 5641744808,
+      "profesional": "DAVES ROLENZO LAM LEUNG",
+      "fecha": "2025-07-24",
+      "hora": "16:00",
+      "paciente": "Airy Nieves",
+      "identificacion": "1717117",
+      "creada": "2025-07-26T15:03:29.043Z"
+    },
+    {
+      "chatId": 7534400608,
+      "profesional": "DAYANA MARIA RODRIGUEZ AVILA (ASISTIDA 1)",
+      "fecha": "2025-07-24",
+      "hora": "07:15",
+      "paciente": "Santiago Suarez Osorio",
+      "identificacion": "1034917433",
+      "creada": "2025-07-26T15:04:54.477Z"
+    }
+  ]
+}
