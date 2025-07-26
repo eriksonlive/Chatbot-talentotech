@@ -1,10 +1,15 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 import rateLimit from 'express-rate-limit';
 import cors from 'cors';
 import routes from './src/Router/routes.js';
 import { IniciarChatbot } from './src/Telegram/Bot.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
@@ -24,10 +29,13 @@ app.use(
 
 app.use(express.json());
 
+// Servir archivos estáticos
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
 // Limitar la cantidad de peticiones por minuto para evitar abuso
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minuto
-  max: 10, // máximo 10 peticiones por minuto
+  max: 100, // máximo 100 peticiones por minuto
   message: 'Demasiadas solicitudes. Intenta más tarde.',
 });
 app.use(limiter);
@@ -42,10 +50,16 @@ function authMiddleware(req, res, next) {
 
 const telegramToken = process.env.TELEGRAM_BOT_TOKEN;
 
-app.get('/', routes);
+app.use('/', routes);
+
+// Ruta específica para el dashboard
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
+});
 
 app.listen(process.env.PORT, () => {
   console.log(`Bot activo en http://localhost:${process.env.PORT}`);
+  console.log(`Dashboard disponible en http://localhost:${process.env.PORT}/dashboard`);
 });
 
 IniciarChatbot(telegramToken);

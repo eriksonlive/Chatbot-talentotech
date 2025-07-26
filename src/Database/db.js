@@ -1,11 +1,12 @@
 import { fileURLToPath } from 'url';
 import path from 'path';
+import fs from 'fs';
 import { normalizarFecha } from "../utils/fechas.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const dbPath = path.join(__dirname, 'db.json');
+const dbPath = path.join(__dirname, '../../db.json');
 
 // Leer base de datos simulada
 export const cargarDB = () => {

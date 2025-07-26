@@ -1,24 +1,65 @@
 import TelegramBot from 'node-telegram-bot-api';
 import { askGemini } from '../IA/gemini.js';
-import axios from 'axios';
-import * as cheerio from 'cheerio';
+import { registrarConversacion } from '../Analytics/analytics.js';
 
 const sesiones = new Map();
 
 export const IniciarChatbot = (telegramToken) => {
+  console.log('🤖 Iniciando bot de Telegram...');
+  
+  if (!telegramToken) {
+    console.error('❌ Token de Telegram no encontrado');
+    return;
+  }
+  
   const bot = new TelegramBot(telegramToken, { polling: true });
+  
+  console.log('✅ Bot de Telegram iniciado correctamente');
+
+  // Manejo de errores del bot
+  bot.on('polling_error', (error) => {
+    console.error('❌ Error de polling:', error);
+  });
+
+  bot.on('error', (error) => {
+    console.error('❌ Error del bot:', error);
+  });
 
   bot.on('message', async (msg) => {
+    console.log('📨 Mensaje recibido:', msg.text);
+    console.log('👤 Chat ID:', msg.chat.id);
+    console.log('📋 Tipo de mensaje:', msg.chat.type);
+    
     const chatId = msg.chat.id;
     const userMessage = msg.text;
 
-    const { data: html } = await axios.get('https://ingelean.com/');
-    const $ = cheerio.load(html);
-    const textoExtraido = $('body')
-      .text()
-      .replace(/\s+/g, ' ')
-      .trim()
-      .slice(0, 10000);
+    // Verificar que el mensaje no sea nulo o vacío
+    if (!userMessage || userMessage.trim() === '') {
+      console.log('⚠️ Mensaje vacío o nulo, ignorando...');
+      return;
+    }
+
+    // Manejar comando /start
+    if (userMessage === '/start') {
+      const welcomeMessage = `¡Hola! 👋 Soy el asistente virtual de INGE LEAN S.A.S.
+
+🛠️ Somos especialistas en:
+• Desarrollo de software a medida
+• Automatización industrial  
+• Diseño de hardware
+• Mantenimiento técnico
+• Inteligencia artificial
+
+💬 ¿En qué puedo ayudarte hoy?`;
+      
+      try {
+        await bot.sendMessage(chatId, welcomeMessage);
+        console.log('✅ Mensaje de bienvenida enviado');
+        return;
+      } catch (error) {
+        console.error('❌ Error enviando mensaje de bienvenida:', error);
+      }
+    }
 
     if (!sesiones.has(chatId)) {
       sesiones.set(chatId, {
@@ -91,13 +132,7 @@ export const IniciarChatbot = (telegramToken) => {
 
       Tu función es brindar respuestas claras, útiles, empáticas y profesionales. Estás disponible 24/7 para resolver dudas, orientar y guiar al usuario.
 
-      A continuación tienes el contenido extraído de una página web:
-
-      --- INICIO CONTENIDO ---
-      ${textoExtraido}
-
-      - Evita asteriscos, signos innecesarios o formato Markdown.
-      --- FIN CONTENIDO ---
+      Puedes utilizar la siguiente web para asesorar a los usuarios con respecto a ingelean: https://ingelean.com/
 
       Identifica las emociones de las personas y adapta tus respuestas en base a eso
 
@@ -154,15 +189,27 @@ export const IniciarChatbot = (telegramToken) => {
       `;
 
     try {
+      console.log('🤔 Procesando mensaje con Gemini...');
       const answer = await askGemini(promptConHistorial);
       sesion.historial.push({ rol: 'bot', mensaje: answer });
 
-      bot.sendMessage(chatId, answer);
+      // Registrar la conversación para analytics
+      registrarConversacion(chatId, userMessage, answer);
+
+      console.log('📤 Enviando respuesta al usuario...');
+      console.log('💬 Respuesta generada:', answer.substring(0, 100) + '...');
+      
+      await bot.sendMessage(chatId, answer);
+      console.log('✅ Respuesta enviada exitosamente al chat:', chatId);
 
       //   sesiones.delete(chatId);
     } catch (error) {
-      bot.sendMessage(chatId, '⚠️ Error procesando tu solicitud.');
-      console.error(error);
+      console.error('❌ Error procesando solicitud:', error);
+      try {
+        await bot.sendMessage(chatId, '⚠️ Error procesando tu solicitud.');
+      } catch (sendError) {
+        console.error('❌ Error enviando mensaje de error:', sendError);
+      }
     }
   });
 };
