@@ -22,7 +22,7 @@ export const IniciarChatbot = (telegramToken) => {
   (async () => {
     try {
       websiteData = await scrapIngeleanWebsite();
-      console.log('🌐 Datos del sitio web cargados correctamente');
+      //console.log('🌐 Datos del sitio web cargados correctamente');
     } catch (error) {
       console.error('❌ Error al cargar datos del sitio web:', error);
     }
@@ -38,16 +38,16 @@ export const IniciarChatbot = (telegramToken) => {
   });
 
   bot.on('message', async (msg) => {
-    console.log('📨 Mensaje recibido:', msg.text);
-    console.log('👤 Chat ID:', msg.chat.id);
-    console.log('📋 Tipo de mensaje:', msg.chat.type);
+   // console.log('📨 Mensaje recibido:', msg.text);
+   // console.log('👤 Chat ID:', msg.chat.id);
+   // console.log('📋 Tipo de mensaje:', msg.chat.type);
     
     const chatId = msg.chat.id;
     const userMessage = msg.text;
 
     // Verificar que el mensaje no sea nulo o vacío
     if (!userMessage || userMessage.trim() === '') {
-      console.log('⚠️ Mensaje vacío o nulo, ignorando...');
+      //console.log('⚠️ Mensaje vacío o nulo, ignorando...');
       return;
     }
 
@@ -72,7 +72,7 @@ También puedes consultarme información actualizada sobre nuestra empresa utili
       
       try {
         await bot.sendMessage(chatId, welcomeMessage);
-        console.log('✅ Mensaje de bienvenida enviado');
+        //console.log('✅ Mensaje de bienvenida enviado');
         return;
       } catch (error) {
         console.error('❌ Error enviando mensaje de bienvenida:', error);
@@ -86,7 +86,7 @@ También puedes consultarme información actualizada sobre nuestra empresa utili
         userMessage.toLowerCase().includes('proyectos')) {
       
       try {
-        console.log('🌐 Procesando consulta sobre el sitio web...');
+       // console.log('🌐 Procesando consulta sobre el sitio web...');
         let responseMessage = '';
         
         // Si no tenemos datos scrapeados o queremos actualizarlos
@@ -111,7 +111,7 @@ También puedes consultarme información actualizada sobre nuestra empresa utili
         
         // Dividir mensajes largos (límite de Telegram: 4096 caracteres)
         if (responseMessage.length > 4000) {
-          console.log('⚠️ Respuesta demasiado larga, dividiendo en partes...');
+         // console.log('⚠️ Respuesta demasiado larga, dividiendo en partes...');
           
           // Dividir en párrafos
           const paragraphs = responseMessage.split('\n\n');
@@ -275,7 +275,7 @@ También puedes consultarme información actualizada sobre nuestra empresa utili
       `;
 
     try {
-      console.log('🤔 Procesando mensaje con Gemini...');
+     // console.log('🤔 Procesando mensaje con Gemini...');
       
       // Si el mensaje contiene referencias a la web de ingelean, intentar actualizar los datos
       if (userMessage.toLowerCase().includes('web') || 
@@ -285,7 +285,7 @@ También puedes consultarme información actualizada sobre nuestra empresa utili
         
         if (!websiteData) {
           try {
-            console.log('🔄 Actualizando datos del sitio web para la consulta...');
+           // console.log('🔄 Actualizando datos del sitio web para la consulta...');
             websiteData = await scrapIngeleanWebsite();
           } catch (webError) {
             console.error('⚠️ No se pudieron obtener datos actualizados del sitio web:', webError);
@@ -300,12 +300,12 @@ También puedes consultarme información actualizada sobre nuestra empresa utili
       // Registrar la conversación para analytics
       registrarConversacion(chatId, userMessage, answer);
 
-      console.log('📤 Enviando respuesta al usuario...');
-      console.log('💬 Respuesta generada:', answer.substring(0, 100) + '...');
+     // console.log('📤 Enviando respuesta al usuario...');
+     // console.log('💬 Respuesta generada:', answer.substring(0, 100) + '...');
       
       // Dividir mensajes largos (límite de Telegram: 4096 caracteres)
       if (answer.length > 4000) {
-        console.log('⚠️ Respuesta demasiado larga, dividiendo en partes...');
+       // console.log('⚠️ Respuesta demasiado larga, dividiendo en partes...');
         
         // Dividir en párrafos primero
         const paragraphs = answer.split('\n\n');
@@ -328,11 +328,11 @@ También puedes consultarme información actualizada sobre nuestra empresa utili
           await bot.sendMessage(chatId, currentMessage.trim());
         }
         
-        console.log('✅ Respuesta dividida enviada exitosamente al chat:', chatId);
+       // console.log('✅ Respuesta dividida enviada exitosamente al chat:', chatId);
       } else {
         // La respuesta cabe en un solo mensaje
         await bot.sendMessage(chatId, answer);
-        console.log('✅ Respuesta enviada exitosamente al chat:', chatId);
+       // console.log('✅ Respuesta enviada exitosamente al chat:', chatId);
       }
 
       //   sesiones.delete(chatId);

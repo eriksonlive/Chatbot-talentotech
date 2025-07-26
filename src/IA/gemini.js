@@ -14,7 +14,7 @@ function truncateText(text, maxLength = 1000) {
 
 export async function askGemini(prompt, websiteData = null) {
   try {
-    console.log('🧠 Gemini: Generando respuesta...');
+   // console.log('🧠 Gemini: Generando respuesta...');
     
     let enhancedPrompt = prompt;
     
@@ -26,7 +26,7 @@ export async function askGemini(prompt, websiteData = null) {
          prompt.toLowerCase().includes('contacto') ||
          prompt.toLowerCase().includes('proyecto'))) {
       
-      console.log('🔍 Enriqueciendo prompt con datos del sitio web...');
+      //console.log('🔍 Enriqueciendo prompt con datos del sitio web...');
       
       enhancedPrompt += `\n\nInformación actualizada del sitio web (ingelean.com):\n`;
       
@@ -70,7 +70,7 @@ export async function askGemini(prompt, websiteData = null) {
     
     const result = await model.generateContent(enhancedPrompt);
     const response = result.response.text();
-    console.log('✅ Gemini: Respuesta generada exitosamente');
+    //console.log('✅ Gemini: Respuesta generada exitosamente');
     return response;
   } catch (error) {
     console.error('❌ Error en Gemini:', error);

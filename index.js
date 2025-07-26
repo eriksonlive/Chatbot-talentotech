@@ -58,8 +58,8 @@ app.get('/dashboard', (req, res) => {
 });
 
 app.listen(process.env.PORT, () => {
-  console.log(`Bot activo en http://localhost:${process.env.PORT}`);
-  console.log(`Dashboard disponible en http://localhost:${process.env.PORT}/dashboard`);
+  //console.log(`Bot activo en http://localhost:${process.env.PORT}`);
+  //console.log(`Dashboard disponible en http://localhost:${process.env.PORT}/dashboard`);
 });
 
 IniciarChatbot(telegramToken);

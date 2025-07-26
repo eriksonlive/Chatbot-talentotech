@@ -7,7 +7,7 @@ import * as cheerio from 'cheerio';
  */
 export async function scrapIngeleanWebsite() {
   try {
-    console.log('🔍 Iniciando scraping de ingelean.com...');
+   // console.log('🔍 Iniciando scraping de ingelean.com...');
     const response = await axios.get('https://ingelean.com/');
     const html = response.data;
     const $ = cheerio.load(html);
@@ -64,7 +64,7 @@ export async function scrapIngeleanWebsite() {
     });
     websiteData.aboutCompany = aboutText.trim();
 
-    console.log('✅ Scraping completado con éxito');
+   // console.log('✅ Scraping completado con éxito');
     return websiteData;
   } catch (error) {
     console.error('❌ Error durante el scraping:', error);

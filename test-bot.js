@@ -10,9 +10,9 @@ const bot = new TelegramBot(token);
 async function getUpdates() {
   try {
     const updates = await bot.getUpdates();
-    console.log('📨 Updates recientes:', JSON.stringify(updates, null, 2));
+   // console.log('📨 Updates recientes:', JSON.stringify(updates, null, 2));
   } catch (error) {
-    console.error('❌ Error obteniendo updates:', error);
+   // console.error('❌ Error obteniendo updates:', error);
   }
 }
 
